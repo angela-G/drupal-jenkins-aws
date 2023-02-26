@@ -1,0 +1,11 @@
+# Ignore configuration files that may contain sensitive information
+/web/sites/*/settings.local.php
+
+# Ignore paths that may contain user-generated content
+/web/sites/*/files
+
+# Ignore drupal core (if not versioning drupal sources)
+/web/core
+
+# Ignore vendor dependencies and scripts
+/vendor

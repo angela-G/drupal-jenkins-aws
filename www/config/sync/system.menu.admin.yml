@@ -1,0 +1,10 @@
+uuid: 2ce741b4-3d01-4e1c-b7d6-0f13ca146bc6
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: sapEi2YDGoI9yQIT_WgIV2vUdQ6DScH0V3fAyTadAL0
+id: admin
+label: Administration
+description: 'Administrative task links'
+locked: true

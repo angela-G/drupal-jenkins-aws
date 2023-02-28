@@ -7,7 +7,7 @@ services:
         context: ./
     restart: "always"
     ports:
-      - "8080:80"
+      - "8000:80"
       - "8433:443"
     links:
       - mysql

@@ -2,10 +2,14 @@ pipeline {
     agent any
     stages {
         stage('Docker start') {
-            sh "docker-compose up -d"	
+            steps {
+                sh "docker-compose up -d"
+            }
         }
         stage('Composer') {
-            sh "docker-compose exec webserver -w /var/www/ -T composer install"
+            steps {
+                sh "docker-compose exec webserver -w /var/www/ -T composer install"
+            }
         }
         // stage('Static Analysis') {
         //     sh "docker-compose exec webserver -T ./vendor/bin/phpcs --standard=Drupal,DrupalPractice"

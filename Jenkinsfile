@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Composer') {
             steps {
-                sh "docker-compose exec -it webserver -w /var/www/ composer install /bin/sh"
+                sh "cd /var/www/ && docker-compose exec -it webserver composer install"
             }
         }
         // stage('Static Analysis') {

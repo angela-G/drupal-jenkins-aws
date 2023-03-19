@@ -11,6 +11,11 @@ pipeline {
                 sh "docker-compose exec -it webserver -w /var/www/ composer install"
             }
         }
+    post {
+      always {
+        sh "docker-compose down"
+      }
+    }
         // stage('Static Analysis') {
         //     sh "docker-compose exec webserver -T ./vendor/bin/phpcs --standard=Drupal,DrupalPractice"
         // }

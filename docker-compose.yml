@@ -13,7 +13,7 @@ services:
       - mysql
     volumes:
      # - ${REPO_ROOT-.}/www/:/var/www/:rw
-      - C:/projects/cicd/jenkins/jenkins_home/workspace/project-drupal@2/www/:/var/www/:rw
+      - C/projects/cicd/jenkins/jenkins_home/workspace/project-drupal@2/www/:/var/www/:rw
 #      - ./config/vhosts:/etc/apache2/sites-enabled
     environment:
       APACHE_DOCUMENT_ROOT: /var/www/web

@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Docker start') {
             steps {
-                sh "docker-compose up -d"
+                sh "REPO_ROOT=/var/jenkins_home/workspace/project-drupal@2 docker-compose up -d"
             }
         }
         stage('Composer') {

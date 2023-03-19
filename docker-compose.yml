@@ -12,7 +12,8 @@ services:
     links:
       - mysql
     volumes:
-      - ./www/:/var/www/:rw
+      #- ./www/:/var/www/:rw
+      - C:/projects/cicd/drupal-jenkins-aws/www:/var/www
 #      - ./config/vhosts:/etc/apache2/sites-enabled
     environment:
       APACHE_DOCUMENT_ROOT: /var/www/web

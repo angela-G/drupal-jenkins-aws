@@ -25,9 +25,9 @@ pipeline {
         //     sh "docker-compose exec webserver -T ./vendor/bin/behat --config tests/behat/behat.yml"
         // }
     }
-    post {
-      always {
-        sh "docker-compose down"
-      }
-    }
+    // post {
+    //   always {
+    //     sh "docker-compose down"
+    //   }
+    // }
 }

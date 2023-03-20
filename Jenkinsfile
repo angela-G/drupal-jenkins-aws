@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Docker start') {
             steps {
-                sh "REPO_ROOT=$HOME docker-compose up -d"
+                sh "printenv REPO_ROOT"
+                sh "docker-compose up -d"
             }
         }
         stage('Composer') {

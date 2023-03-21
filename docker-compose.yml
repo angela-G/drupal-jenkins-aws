@@ -12,7 +12,7 @@ services:
     links:
       - mysql
     volumes:
-      - c:/projects/cicd/jenkins/jenkins_home/workspace/project-drupal/www/:/var/www/:rw
+      - ${REPO_ROOT-./}www/:/var/www/:rw
 
       #- C/projects/cicd/jenkins/jenkins_home/workspace/project-drupal/www:/var/www/:rw
       #projects/cicd/jenkins/jenkins_home/workspace/project-drupal/www:c

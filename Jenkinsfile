@@ -3,13 +3,12 @@ pipeline {
     stages {
         stage('Docker start') {
             steps {
-                sh "printenv REPO_ROOT"
-                sh "docker-compose up -d"
+                bat "docker-compose up -d"
             }
         }
         stage('Composer') {
             steps {
-                sh "docker-compose exec -it webserver composer --working-dir=/var/www install"
+                bat "docker-compose exec -it webserver composer --working-dir=/var/www install"
             }
         }
         // stage('Static Analysis') {

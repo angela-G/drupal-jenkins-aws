@@ -18,7 +18,8 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-                bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c web/phpunit.xml"
+                bat "docker-compose exec -w /var/www/web/core webserver cp phpcs.xml.dist phpcs.xml"
+                bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c web/core/phpunit.xml"
             }
         }
         // stage('Database sync') {

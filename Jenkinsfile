@@ -8,6 +8,7 @@ pipeline {
         }
         stage('Composer') {
             steps {
+                bat "docker-compose exec -it webserver whoami"
                 bat "docker-compose exec -it webserver composer --working-dir=/var/www install"
             }
         }

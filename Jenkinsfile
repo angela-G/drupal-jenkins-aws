@@ -18,7 +18,7 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-                bat "docker-compose exec -w /var/www/web/core webserver cp phpcs.xml.dist phpcs.xml"
+                bat "docker-compose exec -w /var/www/web/core webserver cp phpunit.xml.dist phpunit.xml"
                 bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c web/core/phpunit.xml"
             }
         }

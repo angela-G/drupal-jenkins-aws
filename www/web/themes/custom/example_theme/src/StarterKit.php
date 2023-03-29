@@ -5,6 +5,9 @@ namespace Drupal\starterkit_theme;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Theme\StarterKitInterface;
 
+/**
+ * A StarterKit class with post process.
+ */
 final class StarterKit implements StarterKitInterface {
 
   /**

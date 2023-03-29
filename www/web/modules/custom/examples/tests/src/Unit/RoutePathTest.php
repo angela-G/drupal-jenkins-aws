@@ -37,6 +37,8 @@ class RoutePathTest extends TestCase {
   }
 
   /**
+   * Short description here.
+   *
    * @dataProvider provideYamls
    *   Path to provide yamls.
    */

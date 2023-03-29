@@ -40,6 +40,8 @@ class YamlValidationTest extends TestCase {
   }
 
   /**
+   * Short description here.
+   *
    * @dataProvider provideYamls
    *   Path to provide yamls.
    */

@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Static Analysis') {
             steps {
-                bat "docker-compose exec webserver cd /var/www && ./vendor/bin/phpcs -d memory_limit=512M --standard=Drupal,DrupalPractice web"
+                bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpcs -d memory_limit=512M --standard=Drupal,DrupalPractice web"
             }
         }
         // stage('Unit tests') {

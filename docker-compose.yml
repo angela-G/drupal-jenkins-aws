@@ -13,15 +13,9 @@ services:
       - mysql
     volumes:
       - ${REPO_ROOT-./}www/:/var/www/:rw
-
-      #- C/projects/cicd/jenkins/jenkins_home/workspace/project-drupal/www:/var/www/:rw
-      #projects/cicd/jenkins/jenkins_home/workspace/project-drupal/www:c
-    #  - C/projects/cicd/jenkins/jenkins_home/workspace/project-drupal@2/www/:/var/www/:rw
-#      - ./config/vhosts:/etc/apache2/sites-enabled
     environment:
       APACHE_DOCUMENT_ROOT: /var/www/web
       XDEBUG_CONFIG: "remote_host=host.docker.internal remote_port=9003"
-      COMPOSER_PROCESS_TIMEOUT: -1
     extra_hosts:
       - "host.docker.internal:host-gateway"
 

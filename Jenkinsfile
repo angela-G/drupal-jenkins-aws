@@ -8,13 +8,14 @@ pipeline {
         }
         stage('Composer') {
             steps {
-                bat "docker-compose exec -it webserver printenv COMPOSER_PROCESS_TIMEOUT"
                 bat "docker-compose exec -it webserver composer --working-dir=/var/www install"
             }
         }
-        // stage('Static Analysis') {
-        //     sh "docker-compose exec webserver -T ./vendor/bin/phpcs --standard=Drupal,DrupalPractice"
-        // }
+        stage('Static Analysis') {
+            steps {
+                bat "docker-compose exec webserver cd /var/www && ./vendor/bin/phpcs -d memory_limit=512M --standard=Drupal,DrupalPractice web"
+            }
+        }
         // stage('Unit tests') {
         //     sh "docker-compose exec webserver -T ./vendor/bin/phpunit -c phpunit.xml"
         // }

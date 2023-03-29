@@ -38,6 +38,7 @@ class RoutePathTest extends TestCase {
 
   /**
    * @dataProvider provideYamls
+   *   Path to provide yamls.
    */
   public function testPathsStartWithSlash($yaml_path) {
     $routes = Yaml::parse(file_get_contents($yaml_path));

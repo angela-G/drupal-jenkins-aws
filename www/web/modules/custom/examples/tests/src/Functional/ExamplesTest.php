@@ -33,7 +33,10 @@ class ExamplesTest extends ExamplesBrowserTestBase {
     $assert = $this->assertSession();
 
     // Log in a user who can see the toolbar and all the routes in it.
-    $this->drupalLogin($this->drupalCreateUser(['access content', 'access toolbar']));
+    $this->drupalLogin($this->drupalCreateUser([
+      'access content',
+      'access toolbar'
+    ]));
 
     // All this should be on the front page.
     $this->drupalGet('');

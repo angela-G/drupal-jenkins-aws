@@ -41,6 +41,7 @@ class YamlValidationTest extends TestCase {
 
   /**
    * @dataProvider provideYamls
+   *   Path to provide yamls.
    */
   public function testNoUuidsInConfig($yaml_path) {
     $yaml = Yaml::parse(file_get_contents($yaml_path));

@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Composer') {
             steps {
-                bat "docker-compose exec -it webserver COMPOSER_PROCESS_TIMEOUT=2000 && composer --working-dir=/var/www install"
+                bat "docker-compose exec -it webserver set 'COMPOSER_PROCESS_TIMEOUT=2000' && composer --working-dir=/var/www install"
             }
         }
         // stage('Static Analysis') {

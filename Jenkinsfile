@@ -19,20 +19,21 @@ pipeline {
         stage('Unit tests') {
             steps {
                 bat "docker-compose exec -w /var/www/web/core webserver cp phpunit.xml.dist phpunit.xml"
-                bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c web/core/phpunit.xml"
+                bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c web/core/phpunit.xml web/modules/custom"
             }
         }
-        // stage('Database sync') {
-        //     sh "drush cim -y"
-        //     // sanitize, updb, cim, cr, file sync..
-        // }
+        stage('Database sync') {
+            steps {
+                bat "docker-compose exec -w /var/www/web webserver drush updb -y & drush cim -y && drush cr"
+            }
+        }
         // stage('Functional tests') {
         //     sh "docker-compose exec webserver -T ./vendor/bin/behat --config tests/behat/behat.yml"
         // }
     }
-    // post {
-    //   always {
-    //     sh "docker-compose down"
-    //   }
-    // }
+    post {
+      always {
+        bat "docker-compose down"
+      }
+    }
 }

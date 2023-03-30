@@ -24,7 +24,7 @@ pipeline {
         // }
         stage('Database sync') {
             steps {
-                bat "docker-compose exec -w /var/www/web webserver ./vendor/bin/drush updb -y && ./vendor/bin/drush cim -y && ./vendor/bin/drush cr"
+                bat "docker-compose exec -w /var/www webserver ./vendor/bin/drush updb -y && ./vendor/bin/drush cim -y && ./vendor/bin/drush cr"
             }
         }
         // stage('Functional tests') {

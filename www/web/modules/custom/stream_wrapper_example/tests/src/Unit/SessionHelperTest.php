@@ -37,9 +37,6 @@ class SessionHelperTest extends UnitTestCase {
 
     // Mock the session service.
     $this->createSessionMock();
-
-    // Set up the example.
-    $helper = new SessionHelper($this->requestStack);
   }
 
   /**

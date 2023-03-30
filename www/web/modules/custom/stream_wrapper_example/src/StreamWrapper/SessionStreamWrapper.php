@@ -403,8 +403,7 @@ class SessionStreamWrapper implements StreamWrapperInterface {
    * @return bool
    *   TRUE on success, FALSE otherwise.
    *
-   * @todo
-   *   Allow truncating the stream.
+   * @todo Allow truncating the stream.
    *   https://www.drupal.org/project/examples/issues/2992398
    */
 // @codingStandardsIgnoreStart

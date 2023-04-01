@@ -1,12 +1,12 @@
 pipeline {
     agent any
     stages {
-        stage('Docker start') {
+        stage('Start Containers') {
             steps {
                 bat "docker-compose up -d"
             }
         }
-        stage('Composer') {
+        stage('Install Dependencies') {
             steps {
                 bat "docker-compose exec -w /var/www webserver composer install"
             }
@@ -20,6 +20,12 @@ pipeline {
             steps {
                 bat "docker-compose exec -w /var/www/web/core webserver cp phpunit.xml.dist phpunit.xml"
                 bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c /var/www/web/core/phpunit.xml web/modules/custom"
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'docker-compose build'
+                bat 'docker-compose push'
             }
         }
     }

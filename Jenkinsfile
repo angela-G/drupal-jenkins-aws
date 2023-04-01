@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    }
     stages {
         stage('Start Containers') {
             steps {
@@ -24,6 +27,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                bat 'docker login -u DOCKERHUB_CREDENTIALS_USR -p DOCKERHUB_CREDENTIALS_PSW docker.io'
                 bat 'docker-compose build'
                 bat 'docker-compose push'
             }

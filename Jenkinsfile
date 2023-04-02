@@ -19,16 +19,16 @@ pipeline {
                bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom web/themes/custom"
             }
         }
-        // stage('Unit tests') {
-        //     steps {
-        //         bat "docker-compose exec -w /var/www/web/core webserver cp phpunit.xml.dist phpunit.xml"
-        //         bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c /var/www/web/core/phpunit.xml web/modules/custom"
-        //     }
-        // }
+        stage('Unit tests') {
+            steps {
+                bat "docker-compose exec -w /var/www/web/core webserver cp phpunit.xml.dist phpunit.xml"
+                bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c /var/www/web/core/phpunit.xml web/modules/custom"
+            }
+        }
         stage('Build') {
             steps {
                 bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
-                bat "docker build -t ${DOCKERHUB_CREDENTIALS_USR}/drupal-project:${BUILD_NUMBER}"
+                bat "docker build ${DOCKERHUB_CREDENTIALS_USR}/drupal-project:${BUILD_NUMBER}"
                 bat "docker push ${DOCKERHUB_CREDENTIALS_USR}/drupal-project:${BUILD_NUMBER}"
             }
         }

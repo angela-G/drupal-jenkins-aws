@@ -27,16 +27,16 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat "echo ${DOCKERHUB_CREDENTIALS_PSW} & docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
+                bat "docker login -u ${DOCKERHUB_CREDENTIALS_USR} -p ${DOCKERHUB_CREDENTIALS_PSW}"
                 bat "docker build -t ${DOCKERHUB_CREDENTIALS_USR}/drupal-project:${BUILD_NUMBER} ."
                 bat "docker push ${DOCKERHUB_CREDENTIALS_USR}/drupal-project:${BUILD_NUMBER}"
             }
         }
     }
-    post {
-      always {
-        bat "docker logout"
-        bat "docker-compose down"
-      }
-    }
+    // post {
+    //   always {
+    //     bat "docker logout"
+    //     bat "docker-compose down"
+    //   }
+    // }
 }

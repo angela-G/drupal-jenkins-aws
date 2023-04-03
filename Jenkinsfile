@@ -21,8 +21,7 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-                bat "docker-compose exec -w /var/www/web/core webserver cp phpunit.xml.dist phpunit.xml"
-                bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpunit -c /var/www/web/core/phpunit.xml web/modules/custom"
+                bat "docker-compose exec -w /var/www/web webserver ../vendor/bin/phpunit -c phpunit.xml --coverage-html ../build/coverage modules/custom"
             }
         }
         stage('Build') {
@@ -33,10 +32,19 @@ pipeline {
             }
         }
     }
-    // post {
-    //   always {
-    //     bat "docker logout"
-    //     bat "docker-compose down"
-    //   }
-    // }
+    post {
+      always {
+        bat "docker logout"
+        bat "docker-compose down"
+        publishHTML([
+            allowMissing: false,
+            alwaysLinkToLastBuild: false,
+            keepAll: false,
+            reportDir: 'www/build/coverage',
+            reportFiles: 'index.html',
+            reportName: 'Coverage Report (HTML)',
+            reportTitles: ''
+        ])
+      }
+    }
 }

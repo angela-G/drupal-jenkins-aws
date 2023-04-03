@@ -14,9 +14,9 @@ services:
       - mysql
     volumes:
       - ${REPO_ROOT-./}www/:/var/www/:rw
+      - ${PHP_INI-./config/php.ini}:/usr/local/etc/php/php.ini
     environment:
       APACHE_DOCUMENT_ROOT: /var/www/web
-      XDEBUG_CONFIG: "remote_host=host.docker.internal remote_port=9003"
     extra_hosts:
       - "host.docker.internal:host-gateway"
 

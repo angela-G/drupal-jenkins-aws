@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Unit tests') {
             steps {
-                bat "docker-compose exec -w /var/www/web webserver ../vendor/bin/phpunit --coverage-html build/coverage modules/custom"
+                bat "docker-compose exec -w /var/www/web webserver ../vendor/bin/phpunit --coverage-html coverage modules/custom"
             }
         }
         stage('Build') {
@@ -40,7 +40,7 @@ pipeline {
             allowMissing: false,
             alwaysLinkToLastBuild: false,
             keepAll: false,
-            reportDir: 'www/web/build/coverage',
+            reportDir: 'www/web/coverage',
             reportFiles: 'index.html',
             reportName: 'Coverage Report (HTML)',
             reportTitles: ''

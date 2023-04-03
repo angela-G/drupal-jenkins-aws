@@ -27,7 +27,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat "echo ${DOCKERHUB_CREDENTIALS_PSW} | docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
+                bat "echo ${DOCKERHUB_CREDENTIALS_PSW} & docker login -u ${DOCKERHUB_CREDENTIALS_USR} --password-stdin"
                 bat "docker build -t ${DOCKERHUB_CREDENTIALS_USR}/drupal-project:${BUILD_NUMBER} ."
                 bat "docker push ${DOCKERHUB_CREDENTIALS_USR}/drupal-project:${BUILD_NUMBER}"
             }

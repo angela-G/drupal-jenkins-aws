@@ -32,19 +32,19 @@ pipeline {
             }
         }
     }
-    post {
-      always {
-        bat "docker logout"
-        bat "docker-compose down"
-        publishHTML([
-            allowMissing: false,
-            alwaysLinkToLastBuild: false,
-            keepAll: false,
-            reportDir: 'www/web/coverage',
-            reportFiles: 'index.html',
-            reportName: 'Coverage Report (HTML)',
-            reportTitles: ''
-        ])
-      }
-    }
+    // post {
+    //   always {
+    //     bat "docker logout"
+    //     bat "docker-compose down"
+    //     publishHTML([
+    //         allowMissing: false,
+    //         alwaysLinkToLastBuild: false,
+    //         keepAll: false,
+    //         reportDir: 'www/web/coverage',
+    //         reportFiles: 'index.html',
+    //         reportName: 'Coverage Report (HTML)',
+    //         reportTitles: ''
+    //     ])
+    //   }
+    // }
 }

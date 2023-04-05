@@ -17,11 +17,8 @@ pipeline {
         stage('Run Tests') {
             parallel {
                 stage('Static Analysis') {
-                    agent {
-                        docker { image 'cytopia/phpcs' }
-                    }
                     steps {
-                        sh "phpcs --standard=Drupal,DrupalPractice web/modules/custom web/themes/custom"
+                        bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom web/themes/custom"
                     }
                 }
                 stage('Unit Tests') {

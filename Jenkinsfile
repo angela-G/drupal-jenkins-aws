@@ -14,14 +14,18 @@ pipeline {
                 bat "docker-compose exec -w /var/www webserver composer install"
             }
         }
-        stage('Static Analysis') {
-            steps {
-               bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom web/themes/custom"
-            }
-        }
-        stage('Unit tests') {
-            steps {
-                bat "docker-compose exec -w /var/www/web webserver ../vendor/bin/phpunit --coverage-html ../build/coverage modules/custom"
+        stage('Run Tests') {
+            parallel {
+                stage('Static Analysis') {
+                    steps {
+                        bat "docker-compose exec -w /var/www webserver ./vendor/bin/phpcs --standard=Drupal,DrupalPractice web/modules/custom web/themes/custom"
+                    }
+                }
+                stage('Unit Tests') {
+                    steps {
+                        bat "docker-compose exec -w /var/www/web webserver ../vendor/bin/phpunit --coverage-html ../build/coverage modules/custom"
+                    }
+                }
             }
         }
         stage('Build') {
